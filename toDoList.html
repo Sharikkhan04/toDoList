@@ -1,0 +1,136 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toDoList</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            transition: 0.5s;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            justify-content: center;
+            display: flex;
+            background-color: #aeccf6;
+        }
+
+        h1 {
+            word-spacing:.8rem;
+            letter-spacing: .5rem;
+            text-transform: uppercase;
+            margin-bottom: 3.4rem;
+        }
+
+        #main-container {
+            width: 380px;
+            height:350px;
+            text-align: center;
+            margin-top: 10rem;
+            padding: 5%;
+            background-color: #fcde67;
+        }
+
+        #addToDoButton {
+            width: 2.2rem;
+            height: 1.8rem;
+            background-color: black;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        #addToDoButton:active {
+            color: #000;
+            background-color: #fff;
+            font-size: 1rem;
+        }
+
+        #inputField {
+            outline: none;
+            width: 10rem;
+            height: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .para-style {
+            text-align: left;
+            cursor: pointer;
+            color:  #030e12;
+
+        }
+        #clrAll {
+            width: 3.5rem;
+            height: 2rem;
+            background-color: black;
+            border-radius: 25px;
+            color: #fff;
+            font-size: .8rem;
+            font-weight: bold;
+            cursor: pointer;
+            float: right;
+        }
+         #clrAll:active{
+            background-color: #fff ;
+            border-radius: 30px;
+            color:  #030e12 ;
+         }
+         #toDoContainer{
+         width:15rem ;
+         height:10rem;
+         margin-left: 5rem;
+         overflow: hidden;
+         overflow-y: scroll;
+         }
+         input {
+           border: none;
+           border-bottom: 1.3px solid black;
+           background: transparent;
+           font-size: 1rem;
+           text-align: center;
+         }
+         input::placeholder{
+         color:  #fff;
+         font-weight: 400;
+         }
+    </style>
+</head>
+
+<body>
+    <div id="main-container">
+        <h1>to do list</h1>
+        <input id="inputField" type="text" placeholder="eg. tomorrow  meeting !">
+        <button id="addToDoButton">+</button>
+        <div id="toDoContainer">
+        </div>
+        <button id="clrAll" onclick="clearAll()">clear all</button>
+    </div>
+</body>
+<script>
+    let addToDoButton = document.getElementById("addToDoButton");
+    let inputField = document.getElementById("inputField");
+    let toDoContainer = document.getElementById("toDoContainer");
+
+    addToDoButton.addEventListener('click', function () {
+        var paragraph = document.createElement('li');
+        paragraph.classList.add('para-style');
+        paragraph.innerText = inputField.value;
+        toDoContainer.appendChild(paragraph);
+        inputField.value = " ";
+        paragraph.addEventListener('click', function () {
+            paragraph.style.textDecoration = "line-through";
+        })
+        paragraph.addEventListener('dblclick', function () {
+            toDoContainer.removeChild(paragraph);
+        })
+    })
+    function clearAll() {
+    document.getElementById("toDoContainer").innerHTML = " ";
+    }
+</script>
+</html>
